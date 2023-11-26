@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create Travel</h1>
+{% endblock %}
+
+{% block content1 %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ form.from_city.errors }}
+                <label for="{{ form.from_city.id_for_label }}">From City:</label>
+                {{ form.from_city }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.to_city.errors }}
+                <label for="{{ form.to_city.id_for_label }}">To City:</label>
+                {{ form.to_city }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.to_hotel.errors }}
+                <label for="{{ form.to_hotel.id_for_label }}">Hotel:</label>
+                {{ form.to_hotel }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ form.from_airport.errors }}
+                <label for="{{ form.from_airport.id_for_label }}">Airport:</label>
+                {{ form.from_airport }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.departure_date.errors }}
+                <label for="{{ form.departure_date.id_for_label }}">Departure Date:</label>
+                {{ form.departure_date }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.return_date.errors }}
+                <label for="{{ form.return_date.id_for_label }}">Return Date:</label>
+                {{ form.return_date }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.trip_type.errors }}
+                <label for="{{ form.trip_type.id_for_label }}">Trip Type:</label>
+                {{ form.trip_type }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.price_adult.errors }}
+                <label for="{{ form.price_adult.id_for_label }}">Price Adult:</label>
+                {{ form.price_adult }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.price_child.errors }}
+                <label for="{{ form.price_child.id_for_label }}">Price Child:</label>
+                {{ form.price_child }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.promoted.errors }}
+                <label for="{{ form.promoted.id_for_label }}">Promoted:</label>
+                {{ form.promoted }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.num_places_adult.errors }}
+                <label for="{{ form.num_places_adult.id_for_label }}">Num Places Adult:</label>
+                {{ form.num_places_adult }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.number_of_days.errors }}
+                <label for="{{ form.number_of_days.id_for_label }}">Number of Days:</label>
+                {{ form.number_of_days }}
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                {{ form.num_places_child.errors }}
+                <label for="{{ form.num_places_child.id_for_label }}">Num Places Child:</label>
+                {{ form.num_places_child }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.cover.errors }}
+        <label for="{{ form.cover.id_for_label }}">Cover:</label>
+        {{ form.cover }}
+    </div>
+    <div class="form-group">
+        {{ form.trailer.errors }}
+        <label for="{{ form.trailer.id_for_label }}">Trailer:</label>
+        {{ form.trailer }}
+    </div>
+    <div class="form-group">
+        {{ form.description.errors }}
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+    </div>
+    <input type="submit" value="Ok" class="btn btn-primary">
+    <a href="{% url 'list' %}" class="btn btn-light">Cancel</a>
+</form>
+{% endblock %}

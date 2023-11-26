@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="col text-center">
+    <img src="{{ object.cover.url }}" alt="{{ object.title }} Cover" style="width: 70%;" height="400" class="mx-auto">
+</div>
+
+{% endblock %}
+
+{% block content1 %}
+<form method="post">
+    {% csrf_token %}
+    <h5>
+        Are you sure you want to delete trip "{{ object.to_city }}" from database?
+    </h5>
+    <br>
+    <input type="submit" value="Delete" class="btn btn-danger">
+    <a href="{% url 'list' %}" class="btn btn-light">Cancel</a>
+</form>
+{% endblock %}

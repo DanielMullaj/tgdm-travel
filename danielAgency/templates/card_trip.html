@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<img src="{% static 'lake.jpg' %}" style="width: 100%;" height="600" alt="Lake Image">
+<h1 style="text-align: center">UDHETIME ME GUIDE!</h1>
+{% endblock %}
+
+{% block content1 %}
+<div class="card-columns">
+    {% for trip in object_list %}
+    <a href="{% url 'trip_detail' pk=trip.id %}">
+        <div class="card border-light bg-light mb-3" style="width: 18rem;">
+            <img class="card-img-top"
+                 {% if trip.cover %}
+                 src="{{ trip.cover.url }}"
+                 {% else %}
+                 src=""
+                 {% endif %}
+                 alt="{{ trip.to_city }}"
+            >
+            <div class="card-body">
+                <h5 class="card-title">{{ trip.to_city }}</h5>
+                <a href="{% url 'trip_detail' pk=trip.id %}" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <a class="btn btn-link" href="{% url 'list' %}">Back</a>
+</div>
+<h1>Top places to visit while staying in {{ object.to_city }}!</h1>
+{% endblock %}
+
+{% block content1 %}
+<div class="row">
+    <div class="col">
+        <iframe width="100%" height="600" src="{{ object.trailer }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</div>
+<div class="col">
+    <br>
+    <h2 class="col" style="font-family: 'Times New Roman'; text-shadow: 2px 2px 5px blue;">{{ object.to_city }}</h2>
+    <br>
+    <div class="col" style="text-align: left; width: 950px; text-shadow: 2px 2px 5px blue; font-family: 'Times New Roman', Times, serif; font-size: 20px; margin: 0 auto;">{{ object.description }}</div>
+</div>
+{% endblock %}

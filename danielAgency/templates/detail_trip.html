@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="col">
+    <img src="{{ object.cover.url }}" alt="{{ object.title }} Cover" style="width: 70%;" height="400">
+</div>
+<div>
+    <a class="btn btn-link" href="{% url 'trip' %}">Back</a>
+</div>
+<h1>{{ object.title }}</h1>
+{% endblock %}
+
+{% block content1 %}
+<h1>Detajet e Udhëtimit!</h1>
+<br>
+<div class="col">
+    <div class="col"><b>Destination:</b> {{ object.to_city }}</div> <br>
+    <div class="col"><b>Airport:</b> {{ object.from_airport }}</div> <br>
+    <div class="col"><b>Hotel:</b> {{ object.to_hotel }}</div> <br>
+    <div class="col"><b>Departure Date:</b> {{ object.departure_date }}</div> <br>
+    <div class="col"><b>Return Date:</b> {{ object.return_date }}</div> <br>
+    <div class="col"><b>Price:</b> {{ object.price_adult }}€/P</div> <br>
+
+    <!-- Book Now Button Triggering Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookNowModal">
+        Book Now
+    </button>
+
+    <div class="modal fade" id="bookNowModal" tabindex="-1" role="dialog" aria-labelledby="bookNowModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookNowModalLabel">Book Now</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Display the booking form -->
+                <form method="post" action="{% url 'book_now' pk=object.id %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Book Now!</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

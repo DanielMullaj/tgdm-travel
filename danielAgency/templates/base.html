@@ -1,0 +1,181 @@
+{% load static %}
+
+<html {% if LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}" {% endif %}>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>T.G.D.M. Travel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light; text-white" style="background-color: #45526e;">
+    <a class="navbar-brand" href="{% url 'trip' %}">T.G.D.M.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'list' %}">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'contact_view' %}">Kontakt</a>
+            </li>
+        </ul>
+        <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+                {% if user.is_authenticated %}
+                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                    {% if user.first_name %}Hello, {{ user.first_name }}!
+                    {% else %}Hello, {{ user.username }}!{% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item text-right" href="{% url 'logout' %}">Logout</a>
+                    <a class="dropdown-item text-right" href="{% url 'password_change' %}">Change
+                        password</a>
+                </div>
+                {% else %}
+                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                    You are not logged in.
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item text-right" href="{% url 'login' %}">Login</a>
+                    <a class="dropdown-item text-right" href="{% url 'sign_up' %}">Sign up</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <br>
+    <div>
+        {% block content1 %}{% endblock %}
+    </div>
+</div>
+</body>
+<br>
+<div>
+    <footer
+            class="text-center text-lg-start text-white"
+            style="background-color: #45526e"
+    >
+        <div class="container p-4 pb-0">
+            <section class="">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <p>
+                            Udhëtimi? Nuk është biznes
+                            por më së pari pasioni ynë i hershëm. Ne ju ofrojmë eksperiencat tona të mrekullueshme. E
+                            shijojmë çdo udhëtim sikur të ishte hera e parë dhe këtë përjetim e ndajmë me JU miqtë tanë.
+                        </p>
+                    </div>
+
+                    <hr class="w-100 clearfix d-md-none"/>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">T.G.D.M. TRAVEL</h6>
+                        <p>
+                            <a class="text-white" href="{% url 'about_us' %}"
+                            >About Us</a>
+                        </p>
+                        <p>
+                            <a class="text-white" href="{% url 'contact_view' %}"
+                            >Contact Us</a>
+                        </p>
+                        <p>
+                            <a class="text-white" href="{% url 'login' %}"
+                            >LogIn</a>
+                        </p>
+                    </div>
+
+                    <hr class="w-100 clearfix d-md-none"/>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            Best Destination
+                        </h6>
+                        <p>
+                            <a class="text-white">Madrid</a>
+                        </p>
+                        <p>
+                            <a class="text-white">Paris</a>
+                        </p>
+                        <p>
+                            <a class="text-white">Milano</a>
+                        </p>
+                    </div>
+
+                    <hr class="w-100 clearfix d-md-none"/>
+
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p><i class="fas fa-home mr-3"></i> Tirane, 1002, Albania</p>
+                        <p><i class="fas fa-envelope mr-3"></i> info@tgdmtravel.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +355 69 456 3488</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-3">
+
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <div class="p-3">
+                            © 2023 Copyright:
+                            <a class="text-white" href="{% url 'list' %}"
+                            >TGDMTravel.al, VAT L03321203G, All rights reserved.</a
+                            >
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                        <!-- Instagram -->
+                        <a class="btn btn-outline-light btn-floating m-1"
+                           href="https://www.instagram.com/elitetravel_agency/" role="button" target="_blank">
+                            <i class="fab fa-instagram">Instagram</i>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a class="btn btn-outline-light btn-floating m-1"
+                           href="https://www.youtube.com/channel/UCE-35T6qQTnrU1Cxpn35IJQ"
+                           role="button" target="_blank">
+                            <i class="fab fa-youtube">YouTube</i>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a class="btn btn-outline-light btn-floating m-1"
+                           href="https://www.facebook.com/elitetravel.agency.al" role="button" target="_blank">
+                            <i class="fab fa-facebook-f">Facebook</i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </footer>
+</div>
+</html>
