@@ -1,11 +1,13 @@
 databases:
   - name: tgdmtravel
+    plan: free
     databaseName: tgdmtravel
     user: honest
 
 services:
   - type: web
     name: tgdmtravel
+    plan: free
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn core.wsgi:application"
