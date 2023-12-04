@@ -120,9 +120,21 @@ def book_now(request, pk):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            # Process the booking data (save to database, send emails, etc.)
-            # For simplicity, let's print the data for now
-            print(form.cleaned_data)
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            phone_number = form.cleaned_data["phone_number"]
+            date_of_birth = form.cleaned_data["date_of_birth"]
+            number_of_persons = form.cleaned_data["number_of_persons"]
+
+            send_mail(
+                f"FROM: {name}",
+                email,
+                phone_number,
+                settings.ADMINS,
+                fail_silently=False,
+                html_message=f"<div><p><em>From:</em> {name}</p><p>{email}</p><p>{phone_number}</p><p>{date_of_birth}</p><p>{f'Number of Persons: {number_of_persons}'}</p></div>"
+            )
+
             return redirect('trip_detail', pk=pk)
     else:
         form = BookingForm()
@@ -147,7 +159,7 @@ def contact_us(request):
                 email,
                 settings.ADMINS,
                 fail_silently=False,
-                html_message=f"<div><p><em>From:</em> {name}</p><p>{message}</p></div>",
+                html_message=f"<div><p><em>From:</em> {name}</p><p>{email}</p><p>{message}</p></div>",
             )
             return redirect("contact_view")
     else:

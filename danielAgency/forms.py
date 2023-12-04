@@ -60,10 +60,16 @@ class SignUpForm(UserCreationForm):
 
 # booking
 class BookingForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    phone_number = forms.CharField(max_length=20)
-    number_of_persons = forms.IntegerField()
+    name = forms.CharField(label="Name", required=True,max_length=100)
+    email = forms.EmailField(label="Email", required=True)
+    phone_number = forms.CharField(label="Phone Number", required=True, max_length=20)
+    date_of_birth = forms.DateField(
+        label="Date of Birth",
+        widget=forms.SelectDateWidget(years=range(1920, 2023)),  # Adjust the range as needed
+        required=True
+    )
+    number_of_persons = forms.ChoiceField(label="Number of Persons", choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6')])
+
 
 
 class ContactForm(forms.Form):
